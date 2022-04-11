@@ -24,7 +24,7 @@ RUN mkdir /run/php/
 
 # Composer v2
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer2
-RUN composer1 self-update --2
+RUN composer2 self-update --2
 
 # Composer v1
 RUN cp -p /usr/bin/composer2 /usr/bin/composer1
