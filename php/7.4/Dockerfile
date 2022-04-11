@@ -22,13 +22,13 @@ RUN apt-get dist-upgrade -y && apt-get autoremove --purge -y && apt-get clean &&
 ADD conf.d/ /etc/php/7.4/cli/conf.d/
 RUN mkdir /run/php/
 
-# Composer v1
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer1
-RUN composer1 self-update --1
-
 # Composer v2
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer2
 RUN composer2 self-update --2
+
+# Composer v1
+RUN cp -p /usr/bin/composer2 /usr/bin/composer1
+RUN composer1 self-update --1
 
 # Make Composer 2 the default
 RUN ln -s /usr/bin/composer2 /usr/bin/composer
