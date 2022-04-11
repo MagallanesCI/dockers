@@ -1,0 +1,36 @@
+name: Node 14
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'node/14/**'
+
+jobs:
+  build:
+    name: Build Node 14 image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: arm64,amd64
+      - name: Configure Buildx
+        uses: docker/setup-buildx-action@v1
+        id: buildx
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
+      - name: Build image
+        working-directory: ./node/14
+        run: |
+          docker buildx build \
+          --platform=linux/amd64,linux/arm64 \
+          --pull \
+          --tag magallanesci/node:14 \
+          --push \
+          .
