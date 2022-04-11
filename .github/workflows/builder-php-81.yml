@@ -1,4 +1,4 @@
-name: Builder - PHP 8.0
+name: PHP 8.1
 
 on:
   workflow_dispatch:
@@ -6,11 +6,11 @@ on:
     branches:
       - main
     paths:
-      - 'php/8.0/**'
+      - 'php/8.1/**'
 
 jobs:
   build:
-    name: Build PHP 8.0 image
+    name: Build PHP 8.1 image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,11 +27,11 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
       - name: Build image
-        working-directory: ./php/8.0
+        working-directory: ./php/8.1
         run: |
           docker buildx build \
           --platform=linux/amd64,linux/arm64 \
           --pull \
-          --tag magallanesci/php:8.0 \
+          --tag magallanesci/php:8.1 \
           --push \
           .
