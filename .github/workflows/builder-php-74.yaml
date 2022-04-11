@@ -1,0 +1,37 @@
+name: Builder - PHP 7.4
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'php/7.4/**'
+
+jobs:
+  build:
+    name: Build PHP 7.4 image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: arm64,amd64
+      - name: Configure Buildx
+        uses: docker/setup-buildx-action@v1
+        id: buildx
+      - name: Docker Login
+        run: echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
+      - name: Build image
+        working-directory: ./php/7.4
+        run: |
+          docker buildx build \
+          --platform=linux/amd64,linux/arm64 \
+          --pull \
+          --tag magallanesci/php:7.4 \
+          --push \
+          .
