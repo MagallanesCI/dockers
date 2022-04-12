@@ -12,7 +12,7 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh  
     bash /tmp/nodesource_setup.sh && rm -f /tmp/nodesource_setup.sh && \
     apt install -y nodejs
 RUN apt-get dist-upgrade -y && apt-get autoremove --purge -y && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-RUN npm install --global yarn
-
 RUN mkdir /.npm && chmod 777 /.npm
+
+# Add yarn
+RUN npm install --global yarn

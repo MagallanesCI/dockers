@@ -1,15 +1,15 @@
-name: node16
+name: PHP 8.1
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'node/16/**'
+      - 'php/8.1/**'
 
 jobs:
   build:
-    name: Build Node 16 image
+    name: Build PHP 8.1 image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,11 +26,11 @@ jobs:
       - name: Docker Login
         run: echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
       - name: Build image
-        working-directory: ./node/16
+        working-directory: ./php/8.1
         run: |
           docker buildx build \
           --platform=linux/amd64,linux/arm64 \
           --pull \
-          --tag magallanesci/node:16 \
+          --tag magallanesci/php:8.1 \
           --push \
           .

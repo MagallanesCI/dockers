@@ -30,5 +30,5 @@ RUN composer2 self-update --2
 RUN cp -p /usr/bin/composer2 /usr/bin/composer1
 RUN composer1 self-update --1
 
-# Make Composer 2 the default
+# Make Composer 2 the default bin
 RUN ln -s /usr/bin/composer2 /usr/bin/composer
