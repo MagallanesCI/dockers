@@ -1,4 +1,4 @@
-name: Node14
+name: node14
 
 on:
   push:
