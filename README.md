@@ -1,11 +1,13 @@
 # Magallanes Dockers
 These are the source for the docker images provided to speed up deployments.
 
-![PHP 7.4](https://github.com/MagallanesCI/dockers/actions/workflows/builder-php-74.yml/badge.svg?)
-![PHP 8.0](https://github.com/MagallanesCI/dockers/actions/workflows/builder-php-80.yml/badge.svg?)
-![PHP 8.1](https://github.com/MagallanesCI/dockers/actions/workflows/builder-php-81.yml/badge.svg?)
-![Node 14](https://github.com/MagallanesCI/dockers/actions/workflows/builder-node-14.yml/badge.svg?)
-![Node 16](https://github.com/MagallanesCI/dockers/actions/workflows/builder-node-16.yml/badge.svg?)
+![PHP74](https://github.com/MagallanesCI/dockers/actions/workflows/php74.yml/badge.svg?)
+![PHP80](https://github.com/MagallanesCI/dockers/actions/workflows/php80.yml/badge.svg?)
+![PHP81](https://github.com/MagallanesCI/dockers/actions/workflows/php81.yml/badge.svg?)
+![Node14](https://github.com/MagallanesCI/dockers/actions/workflows/node14.yml/badge.svg?)
+![Node16](https://github.com/MagallanesCI/dockers/actions/workflows/node16.yml/badge.svg?)
+
+Hub repo: https://hub.docker.com/u/magallanesci
 
 ## PHP
 Available tags:
@@ -19,7 +21,7 @@ magallanesci/php:8.0
 ```
 
 ```
-magallanesci/php:8.2
+magallanesci/php:8.1
 ```
 
 ## Node
